@@ -277,6 +277,21 @@
       width: 100%;
     }
     
+    .nav-link.active {
+      color: var(--primary);
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+      background: var(--gradient);
+    }
+    
+    .mobile-nav-link a.active {
+      color: var(--primary);
+      background: rgba(0,226,195,0.05);
+      border-radius: 10px;
+    }
+    
     .mobile-menu-btn {
       display: none;
       background: transparent;
@@ -327,7 +342,7 @@
     }
     
     .mobile-nav-link a {
-      color: var(--light);
+      color: var (--light);
       font-size: 1.5rem;
       font-weight: 600;
       text-decoration: none;
@@ -1807,6 +1822,48 @@
         behavior: 'smooth'
       });
     });
+    
+    // Active section highlighting based on scroll position
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links .nav-link');
+    const mobileNavLinkElements = document.querySelectorAll('.mobile-nav-link a');
+    
+    function highlightActiveSection() {
+      const scrollPosition = window.scrollY + navbar.offsetHeight + 50;
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          // Remove active class from all links
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+          });
+          mobileNavLinkElements.forEach(link => {
+            link.classList.remove('active');
+          });
+          
+          // Add active class to corresponding navigation links
+          document.querySelector(`.nav-links .nav-link[href="#${sectionId}"]`)?.classList.add('active');
+          document.querySelector(`.mobile-nav-link a[href="#${sectionId}"]`)?.classList.add('active');
+        }
+      });
+      
+      // Special case for top of page/hero section
+      if (scrollPosition < sections[0].offsetTop) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+        mobileNavLinkElements.forEach(link => {
+          link.classList.remove('active');
+        });
+      }
+    }
+    
+    window.addEventListener('scroll', highlightActiveSection);
+    window.addEventListener('load', highlightActiveSection);
     
     // Smooth scroll for all links pointing to the contact form
     document.addEventListener('DOMContentLoaded', function() {
