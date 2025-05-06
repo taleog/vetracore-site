@@ -338,7 +338,7 @@
     
     .mobile-nav-link a:hover,
     .mobile-nav-link a:focus {
-      color: var(--primary);
+      color: var (--primary);
     }
     
     /* Hero Section */
@@ -826,7 +826,7 @@
       flex-wrap: wrap;
     }
     
-    /* Footer */
+        /* Footer */
     footer {
       background-color: var(--dark-accent);
       padding: 80px 0 40px;
@@ -1419,7 +1419,7 @@
         <li><a href="#benefits" class="nav-link">Benefits</a></li>
         <li><a href="#testimonials" class="nav-link">Use Cases</a></li>
         <li><a href="#implementation" class="nav-link">Implementation</a></li>
-        <li><a href="mailto:hello@vetracore.ca" class="nav-link">Contact</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
     </div>
@@ -1432,7 +1432,7 @@
       <li class="mobile-nav-link"><a href="#benefits">Benefits</a></li>
       <li class="mobile-nav-link"><a href="#testimonials">Use Cases</a></li>
       <li class="mobile-nav-link"><a href="#implementation">Implementation</a></li>
-      <li class="mobile-nav-link"><a href="mailto:hello@vetracore.ca">Contact</a></li>
+      <li class="mobile-nav-link"><a href="#contact">Contact</a></li>
     </ul>
   </div>
 
@@ -1451,7 +1451,7 @@
         <p>VetraCore builds custom AI voice and chat agents for small businesses, making your operations efficient and your customers happy.</p>
         <div class="hero-buttons">
           <a href="#services" class="btn">Learn More</a>
-          <a href="mailto:hello@vetracore.ca" class="secondary-btn">Contact Us</a>
+          <a href="#contact" class="secondary-btn">Contact Us</a>
         </div>
       </div>
     </section>
@@ -1642,7 +1642,7 @@
         
         <div class="implementation-cta">
           <p>Most implementations take just 2-4 weeks from initial call to launch, depending on complexity.</p>
-          <a href="mailto:hello@vetracore.ca" class="btn">Schedule a Discovery Call</a>
+          <a href="#contact" class="btn">Schedule a Discovery Call</a>
         </div>
       </div>
     </section>
@@ -1805,6 +1805,29 @@
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
+      });
+    });
+    
+    // Smooth scroll for all links pointing to the contact form
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactLinks = document.querySelectorAll('a[href="#contact"]');
+      
+      contactLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const contactSection = document.getElementById('contact');
+          
+          if (contactSection) {
+            // Account for fixed header height
+            const headerHeight = document.getElementById('navbar').offsetHeight;
+            const contactPosition = contactSection.offsetTop - headerHeight;
+            
+            window.scrollTo({
+              top: contactPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
       });
     });
     
