@@ -24,6 +24,33 @@ mobileNavLinks.forEach(link => {
   });
 });
 
+// Add reveal animations for elements as they enter the viewport
+document.addEventListener('DOMContentLoaded', function() {
+  // Create the Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // If the element is in the viewport
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        // Unobserve after animation begins
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null, // viewport
+    threshold: 0.15, // 15% of the element visible
+    rootMargin: '-50px'
+  });
+
+  // Elements to observe
+  const animateElements = document.querySelectorAll('.stat-box, .service-card, .benefit-item, .testimonial-card, .process-step, .contact-card');
+  animateElements.forEach(el => {
+    observer.observe(el);
+    // Add the base class
+    el.classList.add('animate-element');
+  });
+});
+
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 
