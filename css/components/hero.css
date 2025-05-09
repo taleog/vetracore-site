@@ -8,7 +8,7 @@
   color: #fff;
   overflow: hidden;
   padding-top: var(--header-height);
-  padding-bottom: 200px;
+  padding-bottom: 120px;
 }
 
 .hero::before {
@@ -39,7 +39,7 @@
   align-items: center;
   position: relative;
   z-index: 1;
-}
+  }
 
 /* Hero content styles */
 .hero-content {
@@ -47,7 +47,7 @@
   animation: fade-in-up 1s ease-out;
   position: relative;
   padding-top: 0;
-}
+  }
 
 .hero-badge {
   display: inline-block;
