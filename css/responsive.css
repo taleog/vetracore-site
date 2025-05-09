@@ -90,6 +90,17 @@
     width: 250px;
     height: 250px;
   }
+  
+  /* AI core adjustments */
+  .ai-core-wrapper {
+    max-width: 350px;
+    max-height: 350px;
+  }
+  
+  /* Update the icon distance for this breakpoint */
+  .ai-icons {
+    --icon-distance: 150px;
+  }
 }
 
 /* Medium screens */
@@ -361,6 +372,50 @@
   .checkbox-group {
     margin-bottom: 10px;
   }
+  
+  /* AI core responsive adjustments */
+  .ai-core-wrapper {
+    max-width: 320px;
+    max-height: 320px;
+  }
+  
+  /* Update floating icons to better fit the smaller core size */
+  .ai-icons {
+    --icon-distance: 130px;
+  }
+  
+  /* Adjust floating icon sizes */
+  .floating-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .floating-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Adjust ring sizes */
+  .ring-1 {
+    min-width: 140px;
+    min-height: 140px;
+  }
+  
+  .ring-2 {
+    min-width: 220px;
+    min-height: 220px;
+  }
+  
+  .ring-3 {
+    min-width: 300px;
+    min-height: 300px;
+  }
+  
+  /* Core pulse adjustment */
+  .core-pulse {
+    width: 55px;
+    height: 55px;
+  }
 }
 
 /* Small screens */
@@ -623,6 +678,58 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  
+  /* AI core mobile adjustments */
+  .hero-visual {
+    height: 280px;
+  }
+  
+  .ai-visual {
+    max-width: 280px;
+    height: 280px;
+  }
+  
+  .ai-core-wrapper {
+    max-width: 280px;
+    max-height: 280px;
+  }
+  
+  /* Update floating icons for mobile */
+  .ai-icons {
+    --icon-distance: 110px;
+  }
+  
+  /* Reduce floating icon size on mobile */
+  .floating-icon {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .floating-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+  
+  /* Adjust ring sizes for mobile */
+  .ring-1 {
+    min-width: 120px;
+    min-height: 120px;
+  }
+  
+  .ring-2 {
+    min-width: 190px;
+    min-height: 190px;
+  }
+  
+  .ring-3 {
+    min-width: 260px;
+    min-height: 260px;
+  }
+  
+  .core-pulse {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 /* Extra small screens */
@@ -677,6 +784,54 @@
   
   .logo {
     font-size: 1.5rem;
+  }
+  
+  /* Adjust hero height for very small phones */
+  .hero-visual {
+    height: 260px; 
+  }
+  
+  /* Adjust AI core size for very small screens */
+  .ai-visual {
+    max-width: 250px;
+    height: 250px;
+  }
+  
+  .ai-core-wrapper {
+    max-width: 240px;
+    max-height: 240px;
+  }
+  
+  /* Make floating icons closer to core on tiny screens */
+  .ai-icons {
+    --icon-distance: 90px;
+  }
+  
+  /* Smallest floating icon size */
+  .floating-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .floating-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+  
+  /* Adjust ring sizes for tiny screens */
+  .ring-1 {
+    min-width: 100px;
+    min-height: 100px;
+  }
+  
+  .ring-2 {
+    min-width: 170px; 
+    min-height: 170px;
+  }
+  
+  .ring-3 {
+    min-width: 230px;
+    min-height: 230px;
   }
 }
 
@@ -775,5 +930,186 @@
   .form-group input::placeholder,
   .form-group textarea::placeholder {
     color: rgba(255,255,255,0.35);
+  }
+}
+
+/* Responsive styles */
+
+/* Mobile and tablet adjustments for the hero AI visualization */
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .hero-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .hero-subtitle-wrapper::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .ai-visual {
+    height: 400px;
+  }
+  
+  .ai-core-wrapper {
+    transform: scale(0.85);
+  }
+  
+  .floating-icon {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .floating-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ai-visual {
+    height: 350px;
+  }
+  
+  .ai-core-wrapper {
+    transform: scale(0.75);
+  }
+  
+  .core-pulse {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .core-ring {
+    border-width: 1px;
+  }
+  
+  .ring-1 {
+    min-width: 140px;
+    min-height: 140px;
+  }
+  
+  .ring-2 {
+    min-width: 230px;
+    min-height: 230px;
+  }
+  
+  .ring-3 {
+    min-width: 300px;
+    min-height: 300px;
+  }
+  
+  .floating-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .floating-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-visual {
+    height: 300px;
+  }
+  
+  .ai-core-wrapper {
+    transform: scale(0.65);
+  }
+  
+  .floating-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .floating-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .hero {
+    padding-bottom: 100px;
+  }
+}
+
+/* Special fix for AI core responsiveness */
+@media (max-width: 360px) and (max-height: 640px) {
+  .hero-visual {
+    height: 240px;
+  }
+  
+  .ai-visual {
+    max-width: 220px;
+    height: 220px;
+  }
+  
+  .ai-core-wrapper {
+    max-width: 220px;
+    max-height: 220px;
+  }
+  
+  .ai-icons {
+    --icon-distance: 85px;
+  }
+  
+  .floating-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .floating-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Portrait orientation adjustment */
+@media (max-width: 480px) and (orientation: portrait) {
+  .hero {
+    min-height: 90vh;
+    padding-bottom: 50px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 80px 0 60px;
+  }
+  
+  .hero-grid {
+    grid-template-columns: 1fr 1fr; /* Switch back to 2 columns in landscape */
+    gap: 20px;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+  
+  .hero-subtitle-wrapper::after {
+    left: 0;
+    transform: none;
+  }
+  
+  .ai-visual {
+    height: 300px;
+  }
+  
+  .ai-core-wrapper {
+    max-width: 280px;
+    max-height: 280px;
+  }
+  
+  .ai-icons {
+    --icon-distance: 110px;
   }
 }

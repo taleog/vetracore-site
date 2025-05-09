@@ -1,0 +1,156 @@
+/* Typography styles */
+h1, h2, h3 {
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3.5rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 40px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--gradient);
+  border-radius: 3px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--light-gray);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-light);
+}
+
+.section-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+/* Hero Typography */
+.hero h1 {
+  font-size: 4.5rem;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  background-image: linear-gradient(135deg, #ffffff 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  margin-bottom: 5px;
+  font-weight: 800;
+  filter: drop-shadow(0 2px 5px rgba(0, 226, 195, 0.2));
+}
+
+.hero-tagline {
+  font-size: 1.5rem !important;
+  font-weight: 300;
+  margin-bottom: 0 !important;
+  color: var(--light);
+  letter-spacing: 0.5px;
+}
+
+.hero-description {
+  font-size: 1.1rem !important;
+  margin-bottom: 2rem !important;
+  opacity: 0.9;
+  max-width: 500px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Footer Typography */
+.footer-logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 5px 10px rgba(0,226,195,0.2));
+}
+
+.footer-tagline {
+  margin-bottom: 25px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  font-size: 1.2rem;
+}
+
+.copyright {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+/* Logo styling */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--light);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  z-index: 101;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-gradient {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 5px rgba(0,226,195,0.3));
+}
+
+/* Special text elements */
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  margin-right: 8px;
+}

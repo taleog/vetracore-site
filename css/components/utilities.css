@@ -1,0 +1,224 @@
+/* Utility Classes and Decorative Elements */
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  background: var(--primary);
+  color: var(--dark);
+  padding: 10px 20px;
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  transition: top 0.3s;
+  text-decoration: none;
+  border-radius: 0 0 10px 10px;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  transform: translateY(20px);
+  z-index: 99;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-arrow {
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid var(--dark);
+  border-top: 2px solid var(--dark);
+  transform: rotate(45deg);
+  margin-top: 4px;
+}
+
+/* Decoration Shapes */
+.shape {
+  position: absolute;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.shape-1 {
+  top: 20%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid var(--primary);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation: float 8s infinite ease-in-out;
+}
+
+.shape-2 {
+  bottom: 10%;
+  right: 10%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--primary-light);
+  border-radius: 30% 70% 36% 64% / 64% 30% 70% 36%;
+  animation: float 6s infinite ease-in-out reverse;
+}
+
+.shape-3 {
+  top: 60%;
+  left: 10%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #00a2ff;
+  border-radius: 54% 46% 67% 33% / 48% 52% 48% 52%;
+  animation: float 10s infinite ease-in-out;
+}
+
+/* Ambient glows */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.glow-1 {
+  background: var(--primary);
+  width: 800px;
+  height: 800px;
+  top: -200px;
+  left: -200px;
+}
+
+.glow-2 {
+  background: #00a2ff;
+  width: 600px;
+  height: 600px;
+  bottom: -100px;
+  right: -100px;
+}
+
+/* Section common styles */
+.section-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+  }
+  
+  .nav, .back-to-top, .shape, .mobile-menu, .hero-visual {
+    display: none;
+  }
+  
+  h1, h2, h3 {
+    color: black;
+    -webkit-text-fill-color: black;
+  }
+  
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
+  
+  section {
+    padding: 20px 0;
+    min-height: auto;
+    page-break-inside: avoid;
+  }
+  
+  .container {
+    max-width: 100%;
+  }
+}
+
+/* Fix for notch devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  .nav {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Hide scrollbar but allow scrolling */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Footer specific styles */
+.footer-logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 5px 10px rgba(0,226,195,0.2));
+}
+
+.footer-tagline {
+  margin-bottom: 25px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  font-size: 1.2rem;
+}
+
+.copyright {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+  position: relative;
+}
