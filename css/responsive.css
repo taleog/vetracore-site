@@ -21,6 +21,16 @@
     width: 60px;
     height: 60px;
   }
+  
+  /* Improve form elements for touch */
+  input, select, textarea, button {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 /* Large screens */
@@ -43,7 +53,7 @@
   
   /* Hero section adjustments for large screens */
   .hero-grid {
-    gap: 30px;
+    gap: 40px;
   }
   
   .hero h1 {
@@ -74,6 +84,12 @@
   .service-card {
     padding: 30px 20px;
   }
+  
+  /* Better AI visualization sizing */
+  .ai-core-wrapper {
+    width: 250px;
+    height: 250px;
+  }
 }
 
 /* Medium screens */
@@ -98,20 +114,54 @@
     font-size: 1rem;
   }
   
-  /* Hero section for tablets */
+  /* Hero section for tablets - improved spacing and alignment */
   .hero {
     min-height: auto;
-    padding-bottom: 70px;
+    padding: 120px 0 100px;
   }
   
+  /* Hero section centering improvements */
   .hero-grid {
     grid-template-columns: 1fr;
     height: auto;
     text-align: center;
+    gap: 30px;
+  }
+  
+  /* Better hero content alignment */
+  .hero-content {
+    margin: 0 auto;
+    padding-top: 0;
+    max-width: 500px;
+  }
+  
+  /* Center the subtitle line */
+  .hero-subtitle-wrapper::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Properly center the visual */
+  .hero-visual {
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+  }
+  
+  /* Center the AI visual properly */
+  .ai-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: 0 auto;
   }
   
   .hero-content {
     margin: 0 auto;
+    max-width: 500px;
   }
   
   .hero h1 {
@@ -124,7 +174,9 @@
   }
   
   .hero-visual {
-    margin-top: 30px;
+    margin-top: 20px;
+    max-width: 300px;
+    height: 300px;
   }
   
   .hero-badge {
@@ -260,6 +312,55 @@
   .stat-number {
     font-size: 2.8rem;
   }
+  
+  /* Improved mobile menu */
+  .mobile-menu {
+    padding: 100px 20px;
+  }
+  
+  .mobile-nav-link {
+    margin-bottom: 20px;
+  }
+  
+  .mobile-nav-link a {
+    font-size: 1.3rem;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .mobile-nav-link a:active {
+    transform: scale(0.95);
+    background: rgba(0,226,195,0.1);
+  }
+  
+  /* Improved contact section layout */
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Form improvements */
+  .form-header {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .checkbox-group {
+    margin-bottom: 10px;
+  }
 }
 
 /* Small screens */
@@ -281,13 +382,13 @@
   }
   
   .hero {
-    padding-top: 100px;
-    padding-bottom: 50px;
+    padding: 100px 0 80px;
   }
   
-  /* Hero adjustments for mobile */
+  /* Hero improvements for mobile */
   .hero h1 {
     font-size: 2.5rem;
+    margin-bottom: 5px;
   }
   
   .hero-tagline {
@@ -307,8 +408,8 @@
   }
   
   .hero-illustration {
-    width: 250px;
-    height: 250px;
+    max-width: 240px;
+    height: 240px;
   }
   
   .bubble-1 {
@@ -402,6 +503,181 @@
   .stat-label {
     font-size: 0.95rem;
   }
+  
+  .ai-core-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .core-ring.ring-3 {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .core-pulse {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Improved form touch targets */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 16px;
+    margin-bottom: 5px;
+  }
+  
+  .form-submit {
+    padding: 16px;
+    margin-top: 15px;
+  }
+  
+  .checkbox-group {
+    padding: 5px 0;
+  }
+  
+  /* Improved spacing for cards */
+  .contact-card,
+  .service-card,
+  .testimonial-card,
+  .benefit-item {
+    padding: 25px 20px;
+  }
+  
+  /* Better button sizing */
+  .btn, .secondary-btn {
+    width: 100%;
+    max-width: 320px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+  
+  .hero-buttons {
+    display: block;
+  }
+  
+  .hero-feature {
+    text-align: left;
+  }
+  
+  /* Fix readability issues */
+  p, .testimonial-text, .contact-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  /* Improved card spacing */
+  .service-card {
+    margin-bottom: 20px;
+  }
+  
+  /* Value proposition spacing */
+  .stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .stat-box {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Fix AI graphic centering on mobile */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 240px;
+    margin: 0 auto;
+  }
+  
+  .ai-visual {
+    width: 240px;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  .ai-core-wrapper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+  
+  .ai-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .core-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  .hero-tagline {
+    font-size: 1.2rem !important;
+  }
+  
+  .contact-form {
+    padding: 25px 15px;
+  }
+  
+  .form-header h3 {
+    font-size: 1.3rem;
+  }
+  
+  .form-icon {
+    font-size: 1.8rem;
+  }
+  
+  /* Improved spacing */
+  section {
+    padding: 50px 0;
+  }
+  
+  .section-intro {
+    margin-bottom: 40px;
+  }
+  
+  /* Fix nav padding */
+  .nav .container {
+    padding: 0 15px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
 }
 
 /* Contact form responsive adjustments */
@@ -428,6 +704,23 @@
   
   .contact-info {
     flex-direction: column;
+  }
+  
+  /* Better spacing for form elements */
+  .form-group label {
+    margin-bottom: 8px;
+  }
+  
+  /* Fix horizontal scrolling issues */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Fixed position elements for mobile */
+  .back-to-top {
+    right: 15px;
+    bottom: 15px;
   }
 }
 
@@ -461,5 +754,26 @@
   
   .container {
     max-width: 100%;
+  }
+}
+
+/* Fix for notch devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  .nav {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Dark mode improvements */
+@media (prefers-color-scheme: dark) {
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(255,255,255,0.35);
   }
 }
