@@ -1,0 +1,269 @@
+/* Media Queries */
+
+/* Better touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .btn, 
+  .secondary-btn,
+  .nav-link,
+  .social-icon {
+    padding: 15px 30px;
+  }
+  
+  .nav-links {
+    gap: 20px;
+  }
+  
+  .mobile-menu-btn {
+    padding: 10px;
+  }
+  
+  .back-to-top {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Large screens */
+@media (max-width: 1024px) {
+  :root {
+    --header-height: 60px;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  h2 {
+    font-size: 2.2rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  .testimonial-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  .testimonial-card {
+    padding: 30px;
+  }
+  
+  .service-card {
+    padding: 30px 20px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 768px) {
+  section {
+    padding: 70px 0;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  p {
+    font-size: 1rem;
+  }
+  
+  .services {
+    clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+    margin: -25px 0;
+    padding: 100px 0;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .hero-buttons, .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .btn, .secondary-btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .benefit-item {
+    padding: 20px;
+    flex-direction: column;
+  }
+  
+  .check-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .process-step {
+    flex-direction: column;
+    padding: 25px;
+  }
+  
+  .process-number {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  .process-connector {
+    display: none; /* Remove the connectors in mobile view */
+  }
+  
+  .process-step:hover {
+    transform: translateY(-5px);
+  }
+  
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  section {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .hero {
+    padding-top: 100px;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+  }
+  
+  .stat-box {
+    padding: 20px 15px;
+    min-width: 100%;
+  }
+  
+  .testimonial-card {
+    padding: 25px 20px;
+  }
+  
+  .cta h2 {
+    font-size: 2rem;
+  }
+  
+  .social-links {
+    gap: 15px;
+  }
+  
+  .social-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .shape-1 {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .shape-2, .shape-3 {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Contact form responsive adjustments */
+@media (max-width: 968px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-info {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .contact-card {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 30px 20px;
+  }
+  
+  .contact-info {
+    flex-direction: column;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+  }
+  
+  .nav, .back-to-top, .shape {
+    display: none;
+  }
+  
+  h1, h2, h3 {
+    color: black;
+    -webkit-text-fill-color: black;
+  }
+  
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
+  
+  .hero, section {
+    padding: 20px 0;
+    min-height: auto;
+    page-break-inside: avoid;
+  }
+  
+  .container {
+    max-width: 100%;
+  }
+}

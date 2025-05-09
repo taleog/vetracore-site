@@ -15,13 +15,31 @@
   <title>VetraCore - AI Agents for Small Businesses</title>
   <meta name="description" content="VetraCore builds custom AI voice and chat agents for small businesses. Smarter agents. Simpler automation.">
   <meta name="theme-color" content="#0a0e17">
+  <!-- Additional SEO Meta Tags -->
+  <meta name="keywords" content="AI agents, business automation, voice agents, chat agents, customer service automation, small business AI, AI receptionists">
+  <meta name="author" content="VetraCore">
+  <meta property="og:title" content="VetraCore - AI Agents for Small Businesses">
+  <meta property="og:description" content="Custom AI voice and chat agents for small businesses. Smarter agents. Simpler automation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vetracore.ca/">
+  <meta property="og:image" content="https://vetracore.ca/vetracore-icon.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VetraCore - AI Agents for Small Businesses">
+  <meta name="twitter:description" content="Custom AI voice and chat agents for small businesses. Smarter agents. Simpler automation.">
+  <meta name="twitter:image" content="https://vetracore.ca/vetracore-icon.png">
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="vetracore-icon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="vetracore-icon.png">
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Preload critical font weights -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" as="style">
   <!-- Link to external CSS file -->
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <!-- Accessibility Skip Link -->
@@ -54,9 +72,9 @@
   </div>
 
   <!-- Decoration shapes -->
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-  <div class="shape shape-3"></div>
+  <div class="shape shape-1" loading="lazy"></div>
+  <div class="shape shape-2" loading="lazy"></div>
+  <div class="shape shape-3" loading="lazy"></div>
 
   <!-- Main Content -->
   <main id="main">
@@ -369,7 +387,41 @@
   </a>
 
   <!-- Scripts -->
-  <script src="js/main.js"></script>
-  <script src="js/form.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/form.js" defer></script>
+  
+  <!-- Schema.org structured data for better SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "VetraCore",
+    "url": "https://vetracore.ca",
+    "logo": "https://vetracore.ca/vetracore-icon.png",
+    "description": "VetraCore builds custom AI voice and chat agents for small businesses. Smarter agents. Simpler automation.",
+    "email": "hello@vetracore.ca",
+    "sameAs": [
+      "#",
+      "#"
+    ],
+    "service": [
+      {
+        "@type": "Service",
+        "name": "FAQ Chatbots",
+        "description": "Intelligent chatbots trained on your FAQs to answer customer questions instantly"
+      },
+      {
+        "@type": "Service",
+        "name": "Inbound Voice Agents",
+        "description": "AI receptionists that handle incoming calls, route inquiries, and provide information to callers"
+      },
+      {
+        "@type": "Service",
+        "name": "Outbound Voice Agents",
+        "description": "Automated sales and outreach agents that can handle appointment scheduling and follow-ups"
+      }
+    ]
+  }
+  </script>
 </body>
 </html>
