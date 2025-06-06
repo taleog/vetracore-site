@@ -204,3 +204,10 @@
 .animate-delay-4 {
   animation-delay: 0.8s;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
