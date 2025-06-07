@@ -650,3 +650,21 @@ footer::before {
 .social-icon:focus::before {
   opacity: 1;
 }
+
+/* Chatbot Demo Section */
+.chatbot-demo {
+  background-color: #0a0e17;
+  padding: 80px 0;
+}
+
+.chatbot-demo h2 {
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.chatbot-demo iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  background-color: #ffffff;
+}
