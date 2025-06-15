@@ -1,0 +1,253 @@
+/* FAQ Chatbot Widget Styles */
+.faq-chatbot-widget {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  left: auto;
+  z-index: 9999;
+  font-family: 'Inter', sans-serif;
+}
+.faq-chatbot-toggle {
+  background: #181e2b;
+  color: #fff;
+  border: 2.5px solid #2e6cff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 2.1rem;
+  box-shadow: 0 0 0 0 #2e6cff66, 0 8px 32px 0 #0a0e1740, 0 1.5px 8px #2e6cff22;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.18s, background 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+.faq-chatbot-toggle:hover, .faq-chatbot-toggle:focus {
+  background: #2e6cff;
+  border-color: #fff;
+  box-shadow: 0 0 16px 4px #2e6cffcc, 0 12px 40px #2e6cff55;
+  transform: scale(1.08);
+}
+@keyframes chatbot-pulse {
+  0% { box-shadow: 0 0 0 0 #2e6cff55, 0 8px 32px 0 #0a0e1740; }
+  70% { box-shadow: 0 0 0 10px #2e6cff11, 0 8px 32px 0 #0a0e1740; }
+  100% { box-shadow: 0 0 0 0 #2e6cff55, 0 8px 32px 0 #0a0e1740; }
+}
+.faq-chatbot-toggle {
+  animation: chatbot-pulse 2.5s infinite;
+}
+.faq-chatbot-window {
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  max-width: 98vw;
+  height: 470px;
+  background: #181e2b;
+  border-radius: 20px;
+  box-shadow: 0 0 0 4px #2e6cff33, 0 16px 48px 0 #0a0e1740, 0 1.5px 8px #2e6cff22;
+  position: absolute;
+  bottom: 75px;
+  right: 0;
+  left: auto;
+  overflow: hidden;
+  border: 2px solid #232b3e;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(30px) scale(0.98);
+  transition: opacity 0.22s cubic-bezier(.4,1.4,.6,1), transform 0.22s cubic-bezier(.4,1.4,.6,1);
+}
+.faq-chatbot-window.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.faq-chatbot-header {
+  background: #101624;
+  color: #fff;
+  padding: 1rem 1.2rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.01em;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 8px #2e6cff11;
+}
+.faq-chatbot-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 0 0.2em;
+  transition: color 0.18s;
+}
+.faq-chatbot-close:hover, .faq-chatbot-close:focus {
+  color: #ffb700;
+  outline: none;
+}
+.faq-chatbot-messages {
+  flex: 1;
+  padding: 1.1rem 1rem 0.7rem 1rem;
+  overflow-y: auto;
+  background: #181e2b;
+  font-size: 1.04rem;
+  scrollbar-width: thin;
+  scrollbar-color: #2e6cff33 #181e2b;
+}
+.faq-chatbot-messages::-webkit-scrollbar {
+  width: 7px;
+}
+.faq-chatbot-messages::-webkit-scrollbar-thumb {
+  background: #2e6cff22;
+  border-radius: 6px;
+}
+.faq-chatbot-message {
+  margin-bottom: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInMsg 0.32s cubic-bezier(.4,1.4,.6,1);
+}
+@keyframes fadeInMsg {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.faq-chatbot-message.user {
+  align-items: flex-end;
+}
+.faq-chatbot-message.bot {
+  align-items: flex-start;
+}
+.faq-chatbot-bubble {
+  max-width: 82%;
+  padding: 0.75em 1.15em;
+  border-radius: 1.3em;
+  margin-bottom: 0.2em;
+  line-height: 1.5;
+  word-break: break-word;
+  font-size: 1.04rem;
+  box-shadow: 0 2px 8px #2e6cff11;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.18s, transform 0.18s;
+}
+.faq-chatbot-bubble.bubble-in {
+  opacity: 1;
+  transform: scale(1);
+}
+.faq-chatbot-message.user .faq-chatbot-bubble {
+  background: #2e6cff;
+  color: #fff;
+  border-bottom-right-radius: 0.4em;
+  align-self: flex-end;
+  box-shadow: 0 2px 8px #2e6cff33;
+}
+.faq-chatbot-message.bot .faq-chatbot-bubble {
+  background: #232b3e;
+  color: #e3e8f0;
+  border-bottom-left-radius: 0.4em;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px #0a0e1711;
+}
+.faq-chatbot-form {
+  display: flex;
+  border-top: 2px solid #232b3e;
+  background: #181e2b;
+  padding: 0.6rem 0.7rem;
+  box-shadow: 0 -2px 8px #2e6cff08;
+}
+.faq-chatbot-input {
+  flex: 1;
+  border: none;
+  padding: 0.7em 1em;
+  border-radius: 2em;
+  font-size: 1.04rem;
+  background: #232b3e;
+  color: #e3e8f0;
+  margin-right: 0.5em;
+  box-shadow: 0 1px 4px #2e6cff08;
+  transition: box-shadow 0.18s, background 0.18s;
+}
+.faq-chatbot-input:focus {
+  outline: 2px solid #2e6cff;
+  box-shadow: 0 2px 8px #2e6cff22;
+  background: #181e2b;
+}
+.faq-chatbot-send {
+  background: #2e6cff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px #2e6cff22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.faq-chatbot-send:hover, .faq-chatbot-send:focus {
+  background: #0a0e17;
+  outline: none;
+}
+@media (max-width: 600px) {
+  .faq-chatbot-window {
+    right: -2vw;
+    left: auto;
+    width: 99vw;
+    height: 70vh;
+    min-height: 320px;
+  }
+}
+/* Move back-to-top button to bottom left */
+#backToTop {
+  left: 2.5rem !important;
+  right: auto !important;
+  bottom: 2.5rem !important;
+  position: fixed !important;
+  z-index: 9998;
+}
+
+/* Typing bubble animation */
+.faq-chatbot-typing {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 1.1rem;
+  padding-left: 2px;
+}
+.faq-chatbot-typing-bubble {
+  background: #232b3e;
+  border-radius: 1.3em;
+  padding: 0.6em 1.1em;
+  min-width: 44px;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px #0a0e1711;
+}
+.faq-chatbot-typing-dots {
+  display: flex;
+  gap: 4px;
+  margin-left: 2px;
+}
+.faq-chatbot-typing-dot {
+  width: 7px;
+  height: 7px;
+  background: #4f8cff;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: typing-bounce 1.2s infinite both;
+}
+.faq-chatbot-typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.faq-chatbot-typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes typing-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.7; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
