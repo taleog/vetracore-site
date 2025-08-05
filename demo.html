@@ -60,6 +60,11 @@
           <button class="faq-chatbot-close" id="faq-chatbot-close" aria-label="Close Chatbot">×</button>
         </div>
         <div class="faq-chatbot-messages" id="faq-chatbot-messages"></div>
+        <div class="faq-chatbot-suggestions" id="faq-chatbot-suggestions" style="display: flex; flex-direction: column; gap: 8px; margin: 16px 12px 0 0; align-items: flex-end;">
+          <button type="button" class="faq-chatbot-suggestion" style="background: #e3e8ef; color: #222a35; border: none; border-radius: 16px; padding: 7px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin: 0; box-shadow: 0 2px 12px rgba(0,226,195,0.10); max-width: 80%; text-align: left;">What services do you offer?</button>
+          <button type="button" class="faq-chatbot-suggestion" style="background: #e3e8ef; color: #222a35; border: none; border-radius: 16px; padding: 7px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin: 0; box-shadow: 0 2px 12px rgba(0,226,195,0.10); max-width: 80%; text-align: left;">How do I get started?</button>
+          <button type="button" class="faq-chatbot-suggestion" style="background: #e3e8ef; color: #222a35; border: none; border-radius: 16px; padding: 7px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin: 0; box-shadow: 0 2px 12px rgba(0,226,195,0.10); max-width: 80%; text-align: left;">What are your pricing options?</button>
+        </div>
         <form class="faq-chatbot-form" id="faq-chatbot-form" autocomplete="off">
           <input class="faq-chatbot-input" id="faq-chatbot-input" type="text" placeholder="Type your question..." autocomplete="off" />
           <button class="faq-chatbot-send" type="submit" aria-label="Send">➤</button>
@@ -88,6 +93,37 @@
           if (input) input.focus();
         }, 350);
       });
+
+      // Suggestion bubbles click handler
+      var suggestions = document.querySelectorAll('.faq-chatbot-suggestion');
+      var input = document.getElementById('faq-chatbot-input');
+      var suggestionsContainer = document.getElementById('faq-chatbot-suggestions');
+      suggestions.forEach(function(suggestion) {
+        suggestion.addEventListener('click', function() {
+          if (input) {
+            input.value = suggestion.textContent;
+            input.focus();
+          }
+        });
+      });
+
+      // Hide suggestions when a chat is sent
+      var form = document.getElementById('faq-chatbot-form');
+      if (form && suggestionsContainer) {
+        form.addEventListener('submit', function() {
+          suggestionsContainer.style.display = 'none';
+        });
+      }
+
+      // Show suggestions again when chat is reopened
+      var closeBtn = document.getElementById('faq-chatbot-close');
+      var toggleBtn = document.getElementById('faq-chatbot-toggle');
+      function showSuggestions() {
+        if (suggestionsContainer) suggestionsContainer.style.display = 'flex';
+      }
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', showSuggestions);
+      }
     });
   </script>
 </body>
