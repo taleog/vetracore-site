@@ -125,6 +125,19 @@
         toggleBtn.addEventListener('click', showSuggestions);
       }
     });
+
+    // Ensure chatbot input is visible above mobile keyboard
+    (function() {
+      var input = document.getElementById('faq-chatbot-input');
+      var windowEl = document.getElementById('faq-chatbot-window');
+      if (input && windowEl) {
+        input.addEventListener('focus', function() {
+          setTimeout(function() {
+            input.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          }, 250);
+        });
+      }
+    })();
   </script>
 </body>
 </html>
