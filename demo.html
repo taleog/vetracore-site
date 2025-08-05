@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetraCore Demo - AI Agent Demos</title>
+  <meta name="description" content="Try VetraCore's AI Chatbot and Voice Agent demos.">
+  <link rel="icon" type="image/png" href="vetracore-icon.png" />
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/faq-chatbot.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-container">
+      <a href="index.html" class="logo"><span class="logo-gradient">VetraCore</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#services" class="nav-link">Services</a></li>
+        <li><a href="index.html#benefits" class="nav-link">Benefits</a></li>
+        <li><a href="index.html#testimonials" class="nav-link">Use Cases</a></li>
+        <li><a href="index.html#implementation" class="nav-link">Implementation</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li><a href="demo.html" class="nav-link active">Demo</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main style="min-height: calc(100vh - 180px); display: flex; flex-direction: column;">
+    <section class="demo-landing" style="background: radial-gradient(circle at 70% 70%, #00a88477 0%, #181f2a 60%, #181f2a 100%); min-height: 100vh; display: flex; align-items: center;">
+      <div class="container" style="max-width: 900px; margin: 0 auto;">
+        <div class="section-intro" style="text-align: center; margin-bottom: 40px;">
+          <h1 class="demo-title" style="font-size: 2.6rem; font-weight: 800; color: #00e2c3; letter-spacing: 1px; margin-bottom: 12px;">AI Demo Center</h1>
+          <p class="demo-desc" style="color: #e3e8ef; font-size: 1.15rem;">Experience VetraCore's intelligent Chatbot and Voice Agent demos. Interact live below.</p>
+        </div>
+        <div class="demo-panels" style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
+          <div class="demo-panel chatbot-panel" style="background: #222a35; color: #fff; border-radius: 22px; box-shadow: 0 8px 36px rgba(0,226,195,0.13); padding: 44px 32px; text-align: center; flex: 1 1 340px; min-width: 300px; position: relative;">
+            <div style="margin-bottom: 16px;"><img src="https://img.icons8.com/fluency/48/000000/chatbot.png" alt="Chatbot Icon" style="width:48px; height:48px;"></div>
+            <h2 style="color: #00e2c3; font-size: 1.5rem; margin-bottom: 20px; font-weight: 700;">Chatbot Demo</h2>
+            <button class="btn demo-btn" id="demoChatbotBtn" style="margin-bottom: 18px; font-size: 1.1rem; padding: 12px 32px; border-radius: 16px; background: linear-gradient(90deg,#00e2c3 0%,#00b6e2 100%); color: #181f2a; font-weight: 700; box-shadow: 0 2px 12px rgba(0,226,195,0.18); border: none; cursor: pointer; transition: box-shadow 0.2s, background 0.2s, border-radius 0.2s; min-width: 170px;">Try Chatbot</button>
+            <div class="demo-chatbot-placeholder" id="demoChatbotPlaceholder">
+              <p class="demo-placeholder-text" style="color: #b3b9c9; font-size: 1.05rem; margin-top: 10px;">Chat with our AI bot and see how it handles real business FAQs.</p>
+            </div>
+          </div>
+          <div class="demo-panel voice-panel" style="background: #222a35; color: #fff; border-radius: 22px; box-shadow: 0 8px 36px rgba(0,226,195,0.13); padding: 44px 32px; text-align: center; flex: 1 1 340px; min-width: 300px; position: relative;">
+            <div style="margin-bottom: 16px;"><img src="https://img.icons8.com/fluency/48/000000/phone.png" alt="Voice Icon" style="width:48px; height:48px;"></div>
+            <h2 style="color: #00e2c3; font-size: 1.5rem; margin-bottom: 20px; font-weight: 700;">Voice Agent Demo</h2>
+            <a href="tel:+17754297429" class="btn demo-btn" id="demoVoiceBtn" style="margin-bottom: 18px; font-size: 1.1rem; padding: 12px 32px; border-radius: 16px; background: linear-gradient(90deg,#00e2c3 0%,#00b6e2 100%); color: #181f2a; font-weight: 700; box-shadow: 0 2px 12px rgba(0,226,195,0.18); border: none; cursor: pointer; display: inline-block; transition: box-shadow 0.2s, background 0.2s, border-radius 0.2s; min-width: 170px; text-decoration: none;">Try Voice Agent</a>
+            <div class="voice-demo-placeholder" style="margin-top: 10px;">
+              <p class="demo-placeholder-text" style="color: #b3b9c9; font-size: 1.05rem;">Call our AI voice agent at <span style="display:inline-block; background:rgba(0,226,195,0.08); padding:4px 12px; border-radius:6px; font-size:1.18rem; color:#00e2c3; font-weight:600; letter-spacing:1px; margin-left:4px;">+1 (775) 429-7429</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Chatbot Widget HTML -->
+    <div class="faq-chatbot-widget" id="faq-chatbot-widget">
+      <button class="faq-chatbot-toggle" id="faq-chatbot-toggle" aria-label="Open FAQ Chatbot" tabindex="0">💬</button>
+      <div class="faq-chatbot-window" id="faq-chatbot-window" hidden>
+        <div class="faq-chatbot-header">
+          VetraCore FAQ Chatbot
+          <button class="faq-chatbot-close" id="faq-chatbot-close" aria-label="Close Chatbot">×</button>
+        </div>
+        <div class="faq-chatbot-messages" id="faq-chatbot-messages"></div>
+        <form class="faq-chatbot-form" id="faq-chatbot-form" autocomplete="off">
+          <input class="faq-chatbot-input" id="faq-chatbot-input" type="text" placeholder="Type your question..." autocomplete="off" />
+          <button class="faq-chatbot-send" type="submit" aria-label="Send">➤</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container footer-content" style="border-top: 1px solid #222a35; margin-top: 48px; padding-top: 24px; text-align: center;">
+      <div class="footer-logo" style="color: #00e2c3; font-size: 2rem; font-weight: 700; margin-bottom: 8px;">VetraCore</div>
+      <p class="footer-tagline" style="color: #b3b9c9; font-size: 1.08rem; margin-bottom: 4px;">Smarter agents. Simpler automation.</p>
+      <p class="copyright" style="color: #b3b9c9; font-size: 0.98rem;">© 2025 VetraCore. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- FAQ Chatbot JS -->
+  <script src="js/faq-chatbot.js"></script>
+  <script>
+    // Make Try Chatbot button open the FAQ chatbot popup and focus input
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('demoChatbotBtn');
+      var toggle = document.getElementById('faq-chatbot-toggle');
+      btn.addEventListener('click', function() {
+        if (toggle) toggle.click();
+        setTimeout(function() {
+          var input = document.getElementById('faq-chatbot-input');
+          if (input) input.focus();
+        }, 350);
+      });
+    });
+  </script>
+</body>
+</html>

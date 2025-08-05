@@ -19,3 +19,66 @@
 
 /* Responsive styles - kept as a separate file for easier maintenance */
 @import 'responsive.css';
+
+/* Enhanced demo page styles */
+.enhanced-demo {
+  background: linear-gradient(135deg, #f8fafc 0%, #e3e8ee 100%);
+  padding: 60px 0 80px;
+}
+.demo-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0a0e17;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.demo-desc {
+  font-size: 1.2rem;
+  color: #3b4252;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.demo-buttons-wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.demo-panel {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 32px 24px;
+  margin-bottom: 32px;
+  max-width: 500px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.demo-panel h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #0a0e17;
+}
+.demo-placeholder-text {
+  color: #6b7280;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+.demo-panels {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media (max-width: 900px) {
+  .demo-panels {
+    flex-direction: column;
+    gap: 0;
+  }
+  .demo-panel {
+    margin-bottom: 24px;
+  }
+}
