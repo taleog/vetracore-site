@@ -7,46 +7,72 @@
   <meta name="description" content="Live FAQ AI Chatbot demo with user story presets." />
   <link rel="icon" type="image/png" href="vetracore-icon.png" />
   <style>
-    :root { --bg:#0b1720; --card:#142532; --text:#e9f1f5; --accent:#26e0b3; }
+    :root { --bg:#0b1720; --card:#142532; --panel:#0e1c26; --panel-2:#13232f; --text:#e9f1f5; --muted:#9fb2bd; --accent:#26e0b3; --ring:#1f4b3f; }
+    * { box-sizing: border-box; }
     html,body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui,Segoe UI,Roboto,Inter,sans-serif; -webkit-font-smoothing:antialiased; }
-    a { color: var(--accent); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     .wrap { max-width:1100px; margin:40px auto; padding:16px; }
     header { margin-bottom:4px; }
     .title { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
     .title h1 { margin:0; font-size:clamp(22px,3.2vw,34px); line-height:1.15; }
-    .badge-live { display:inline-flex;align-items:center;gap:6px;background:#113029;border:1px solid #1f4b3f;color:#65f0c8;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600; letter-spacing:.5px; }
-    p.sub { opacity:.85; margin:.55rem 0 1.2rem; max-width:820px; line-height:1.45; }
-    nav.breadcrumb { font-size:13px; opacity:.7; margin-bottom:14px; }
-    nav.breadcrumb a { text-decoration:none; }
+    .badge-live { display:inline-flex;align-items:center;gap:6px;background:#113029;border:1px solid var(--ring);color:#65f0c8;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600; letter-spacing:.5px; }
+    p.sub { color:var(--muted); margin:.55rem 0 1.2rem; max-width:820px; line-height:1.45; }
+    nav.breadcrumb { font-size:13px; color:var(--muted); margin-bottom:14px; }
+    nav.breadcrumb a { color:var(--muted); text-decoration:none; }
     .bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:12px 0 18px; }
-    .btn { background:var(--accent); color:#052b24; border:none; border-radius:999px; padding:10px 16px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px; font-size:14px; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,.4); }
+    .btn { background:var(--accent); color:#052b24; border:none; border-radius:999px; padding:10px 16px; font-weight:600; display:inline-flex; align-items:center; gap:8px; font-size:14px; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,.4); }
     .chip { background:var(--card); border:1px solid #1f3848; color:var(--text); border-radius:999px; padding:8px 12px; cursor:pointer; font-size:14px; line-height:1; }
     .chip:hover { background:#1c3240; }
-    .note { margin-top:12px; opacity:.8; font-size:14px; }
-    footer { margin:56px 0 32px; text-align:center; font-size:13px; opacity:.55; }
+    .note { margin-top:12px; color:var(--muted); font-size:14px; }
+    footer { margin:56px 0 32px; text-align:center; font-size:13px; color:#7b8d98; }
 
-    /* Floating chat widget */
-    .vc-chat-launcher { position: fixed; right: 20px; bottom: 20px; z-index: 1000; }
-    .vc-chat-launcher button {
+    /* Slide-over panel + backdrop */
+    .vc-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.5);
+      opacity: 0; pointer-events: none; transition: opacity .18s ease;
+      z-index: 1000;
+    }
+    .vc-backdrop.is-open { opacity: 1; pointer-events: auto; }
+
+    .vc-chat-panel {
+      position: fixed; right: 20px; bottom: 20px;
+      width: 560px; height: 720px; max-height: calc(100vh - 40px);
+      background: var(--panel); border:1px solid #1f3848; border-radius:18px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.55);
+      transform: translateY(14px) scale(.98); opacity:0;
+      transition: transform .18s ease, opacity .18s ease;
+      z-index: 1001;
+    }
+    .vc-chat-panel.is-open { transform: translateY(0) scale(1); opacity:1; }
+
+    .vc-chat-panel__header {
+      height:56px; display:flex; align-items:center; justify-content:space-between;
+      padding:0 12px; border-bottom:1px solid #1f3848; background: linear-gradient(180deg, var(--panel-2), #0f202b);
+    }
+    .vc-chat-panel__title { font-weight:700; font-size:14px; display:flex; align-items:center; gap:10px; }
+    .vc-pill { font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #284658; background:#102632; color:#a6e7d7; }
+    .vc-tools { display:flex; gap:8px; }
+    .vc-icon {
+      background:#1b3341; color:#d8f6ef; border:1px solid #284658; border-radius:10px; padding:7px 10px;
+      cursor:pointer; font-size:12px; line-height:1; font-weight:700;
+    }
+    .vc-icon:hover { filter: brightness(1.1); }
+    .vc-chat-frame { width:100%; height:calc(100% - 56px); border:0; background:#0e1c26; }
+
+    /* Floating launcher */
+    .vc-launcher { position: fixed; right: 20px; bottom: 20px; z-index: 1002; }
+    .vc-launcher button {
       display:inline-flex; align-items:center; gap:8px;
       background: var(--accent); color:#052b24; border:0; border-radius:999px;
-      padding:12px 16px; font-weight:700; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.35);
+      padding:12px 16px; font-weight:700; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.35);
     }
-    .vc-chat-panel {
-      position: fixed; right: 20px; bottom: 82px; width: 420px; height: 600px;
-      background:#0e1c26; border:1px solid #1f3848; border-radius:16px; overflow:hidden;
-      box-shadow:0 18px 48px rgba(0,0,0,.55); z-index: 1000;
-    }
-    .vc-chat-panel__header {
-      height:48px; display:flex; align-items:center; justify-content:space-between;
-      padding:0 12px; border-bottom:1px solid #1f3848; background:#13232f;
-    }
-    .vc-chat-panel__title { font-weight:700; font-size:14px; display:flex; align-items:center; gap:8px; }
-    .vc-chat-panel__close { background:transparent; color:var(--text); border:0; font-size:20px; cursor:pointer; line-height:1; }
-    .vc-chat-frame { width:100%; height:calc(100% - 48px); border:0; background:#0e1c26; }
-    @media (max-width: 520px) {
-      .vc-chat-panel { right:0; bottom:0; width:100%; height:100%; border-radius:0; }
-      .vc-chat-launcher { right: 12px; bottom: 12px; }
+
+    @media (max-width: 620px) {
+      .vc-chat-panel {
+        right: 0; bottom: 0; left: 0; top: 0; width: 100%; height: 100%; max-height: 100%;
+        border-radius: 0; border-left: 0; border-right: 0;
+      }
     }
   </style>
 </head>
@@ -57,7 +83,7 @@
       <h1>Chatbot Demo</h1>
       <span class="badge-live" aria-label="Live system status">● Live</span>
     </header>
-    <p class="sub">Pick a scenario to load a preset FAQ, then open the chat widget. The assistant answers strictly from the provided context and streams replies in real time.</p>
+    <p class="sub">Pick a scenario to load a preset FAQ, then open the chat panel. The assistant answers strictly from the provided context and streams replies in real time.</p>
 
     <div class="bar" aria-label="Choose a scenario">
       <button class="chip" data-preset="coffee">☕ Coffee Shop</button>
@@ -71,63 +97,89 @@
 
   <footer>&copy; 2025 VetraCore</footer>
 
-  <!-- Floating Chat Widget (iframe) -->
-  <div class="vc-chat-launcher" aria-label="Open chatbot">
-    <button id="vcOpenBtn">💬 Try Chatbot</button>
-  </div>
+  <!-- Backdrop + Slide-over -->
+  <div id="vcBackdrop" class="vc-backdrop" hidden></div>
 
   <div id="vcPanel" class="vc-chat-panel" hidden aria-label="Chatbot panel" role="dialog" aria-modal="true">
     <div class="vc-chat-panel__header">
-      <div class="vc-chat-panel__title" id="vcTitle">🤖 VetraCore Chatbot</div>
-      <button id="vcCloseBtn" class="vc-chat-panel__close" aria-label="Close">×</button>
+      <div class="vc-chat-panel__title">
+        <span>🤖 VetraCore</span>
+        <span class="vc-pill" id="vcPresetPill">Chatbot</span>
+      </div>
+      <div class="vc-tools">
+        <button id="vcResetBtn" class="vc-icon" title="Reset chat">Reset</button>
+        <button id="vcOpenFullBtn" class="vc-icon" title="Open full screen">Full</button>
+        <button id="vcCloseBtn" class="vc-icon" title="Close">Close</button>
+      </div>
     </div>
     <iframe class="vc-chat-frame" src="about:blank" title="VetraCore Chatbot (Embedded)" loading="lazy" allow="clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
 
+  <!-- Launcher -->
+  <div class="vc-launcher" aria-label="Open chatbot">
+    <button id="vcOpenBtn">💬 Open Chat</button>
+  </div>
+
   <script>
     (function(){
-      const panel   = document.getElementById('vcPanel');
-      const openBtn = document.getElementById('vcOpenBtn');
-      const closeBtn= document.getElementById('vcCloseBtn');
-      const frame   = panel.querySelector('iframe');
-      const titleEl = document.getElementById('vcTitle');
-      const chips   = Array.from(document.querySelectorAll('[data-preset]'));
-      const BASE    = "https://chat.vetracore.ca";
+      const BASE      = "https://chat.vetracore.ca";
+      const panel     = document.getElementById('vcPanel');
+      const backdrop  = document.getElementById('vcBackdrop');
+      const openBtn   = document.getElementById('vcOpenBtn');
+      const closeBtn  = document.getElementById('vcCloseBtn');
+      const openFull  = document.getElementById('vcOpenFullBtn');
+      const resetBtn  = document.getElementById('vcResetBtn');
+      const frame     = panel.querySelector('iframe');
+      const pill      = document.getElementById('vcPresetPill');
+      const chips     = Array.from(document.querySelectorAll('[data-preset]'));
 
-      function openPanel(){ panel.hidden = false; openBtn.setAttribute('aria-expanded','true'); }
-      function closePanel(){ panel.hidden = true;  openBtn.setAttribute('aria-expanded','false'); }
+      function prettyName(preset){
+        return preset === "coffee" ? "Coffee Shop"
+             : preset === "dental" ? "Dental Clinic"
+             : preset === "ecom"   ? "E‑commerce"
+             : "Chatbot";
+      }
+      function setPill(preset){ pill.textContent = prettyName(preset); }
 
-      function setTitle(preset){
-        const pretty = preset === "coffee" ? "Coffee Shop"
-                      : preset === "dental" ? "Dental Clinic"
-                      : preset === "ecom"   ? "E‑commerce"
-                      : "Chatbot";
-        titleEl.textContent = `🤖 VetraCore · ${pretty}`;
+      function setOpen(open){
+        panel.hidden = !open; backdrop.hidden = !open;
+        panel.classList.toggle('is-open', open);
+        backdrop.classList.toggle('is-open', open);
+      }
+
+      function srcFor(preset){
+        const v = Date.now().toString(36); // cache-buster for fresh Streamlit session
+        const u = new URL(BASE);
+        u.searchParams.set("embed", "1");
+        if (preset) u.searchParams.set("preset", preset);
+        u.searchParams.set("_v", v);
+        return u.toString();
       }
 
       function openWith(preset){
-        // Add a tiny cache-buster so Streamlit allocates a fresh session,
-        // but server-side we ALSO clear when preset changes (belt+suspenders).
-        const v = Date.now().toString(36);
-        const url = new URL(BASE);
-        url.searchParams.set("embed", "1");
-        if (preset) url.searchParams.set("preset", preset);
-        url.searchParams.set("_v", v);
-        frame.src = url.toString();
-        setTitle(preset);
         localStorage.setItem("vc:lastPreset", preset || "");
-        openPanel();
+        frame.src = srcFor(preset);
+        setPill(preset);
+        openFull.onclick = () => window.open(`${BASE}?preset=${encodeURIComponent(preset||"")}`, "_blank", "noopener");
+        setOpen(true);
       }
 
-      // Button clicks
+      // Events
       chips.forEach(btn => btn.addEventListener('click', () => openWith(btn.dataset.preset)));
       openBtn.addEventListener('click', () => {
-        // Reopen with last preset (or none)
         const last = localStorage.getItem("vc:lastPreset") || "";
         openWith(last);
       });
-      closeBtn.addEventListener('click', closePanel);
-      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePanel(); });
+      resetBtn.addEventListener('click', () => {
+        try {
+          const url = new URL(frame.src);
+          const preset = url.searchParams.get("preset") || "";
+          frame.src = srcFor(preset); // reload same preset
+        } catch { frame.src = srcFor(""); }
+      });
+      closeBtn.addEventListener('click', () => setOpen(false));
+      backdrop.addEventListener('click', () => setOpen(false));
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') setOpen(false); });
 
       // Deep link support: #chat-coffee / #chat-dental / #chat-ecom
       function maybeFromHash(){
