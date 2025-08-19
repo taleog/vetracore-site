@@ -9,22 +9,31 @@
   <style>
     :root { --bg:#0b1720; --card:#142532; --panel:#0e1c26; --panel-2:#13232f; --text:#e9f1f5; --muted:#9fb2bd; --accent:#26e0b3; --ring:#1f4b3f; }
     * { box-sizing: border-box; }
-    html,body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui,Segoe UI,Roboto,Inter,sans-serif; -webkit-font-smoothing:antialiased; }
+    html,body { margin:0; background:radial-gradient(circle at 25% 15%, #123040 0%, #09141b 70%) fixed, var(--bg); color:var(--text); font-family:system-ui,Segoe UI,Roboto,Inter,sans-serif; -webkit-font-smoothing:antialiased; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .wrap { max-width:1100px; margin:40px auto; padding:16px; }
+  .wrap { max-width:1180px; margin:0 auto; padding:40px clamp(18px,4vw,52px) 40px; }
     header { margin-bottom:4px; }
-    .title { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-    .title h1 { margin:0; font-size:clamp(22px,3.2vw,34px); line-height:1.15; }
+    .title { display:flex; align-items:flex-start; gap:18px; flex-wrap:wrap; }
+  .title h1 { margin:0; font-size:clamp(30px,5vw,52px); line-height:1.05; letter-spacing:-.5px; background:linear-gradient(90deg,#e9f1f5,#7de7cd); -webkit-background-clip:text; background-clip:text; color:transparent; }
     .badge-live { display:inline-flex;align-items:center;gap:6px;background:#113029;border:1px solid var(--ring);color:#65f0c8;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600; letter-spacing:.5px; }
-    p.sub { color:var(--muted); margin:.55rem 0 1.2rem; max-width:820px; line-height:1.45; }
+  p.sub { color:var(--muted); margin:1rem 0 1.9rem; max-width:760px; line-height:1.55; font-size:17px; }
     nav.breadcrumb { font-size:13px; color:var(--muted); margin-bottom:14px; }
     nav.breadcrumb a { color:var(--muted); text-decoration:none; }
-    .bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:12px 0 18px; }
-    .btn { background:var(--accent); color:#052b24; border:none; border-radius:999px; padding:10px 16px; font-weight:600; display:inline-flex; align-items:center; gap:8px; font-size:14px; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,.4); }
-    .chip { background:var(--card); border:1px solid #1f3848; color:var(--text); border-radius:999px; padding:8px 12px; cursor:pointer; font-size:14px; line-height:1; }
-    .chip:hover { background:#1c3240; }
-    .note { margin-top:12px; color:var(--muted); font-size:14px; }
+    .btn { background:var(--accent); color:#052b24; border:none; border-radius:999px; padding:12px 20px; font-weight:600; display:inline-flex; align-items:center; gap:8px; font-size:15px; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,.4); }
+    .btn:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+    .note { margin-top:20px; color:var(--muted); font-size:14px; }
+    /* Preset cards */
+  .preset-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:60px; margin:0 0 16px; padding:0; }
+    .preset-card { position:relative; list-style:none; padding:0; }
+  .preset-card button { all:unset; display:flex; flex-direction:column; gap:10px; width:100%; height:100%; min-height:160px; cursor:pointer; background:linear-gradient(155deg,#142a37,#0f242f 65%); border:1px solid #1f3848; padding:20px 18px 22px; border-radius:16px; box-shadow:0 6px 18px -6px rgba(0,0,0,.55); transition: border-color .25s, transform .25s, background .25s, box-shadow .25s; }
+  .preset-card button:hover { transform:translateY(-5px); border-color:#2a566a; background:linear-gradient(155deg,#173a49,#112d38 65%); box-shadow:0 10px 28px -6px rgba(0,0,0,.65); }
+    .preset-card button:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    .preset-icon { font-size:34px; line-height:1; }
+    .preset-name { font-weight:600; font-size:16px; letter-spacing:.2px; }
+    .preset-desc { font-size:13px; line-height:1.35; color:var(--muted); }
+    .preset-chipline { display:flex; gap:4px; flex-wrap:wrap; margin-top:auto; }
+    .preset-tag { font-size:10px; font-weight:600; letter-spacing:.5px; text-transform:uppercase; background:#12313f; color:#88cfc1; padding:3px 6px 4px; border-radius:6px; }
     footer { margin:56px 0 32px; text-align:center; font-size:13px; color:#7b8d98; }
 
     /* Slide-over panel + backdrop */
@@ -80,19 +89,44 @@
   <div class="wrap">
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="demo.html">Demo Center</a> › Chatbot</nav>
     <header class="title" role="banner">
-      <h1>Chatbot Demo</h1>
-      <span class="badge-live" aria-label="Live system status">● Live</span>
+      <div>
+        <h1>Chatbot Demo</h1>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;">
+          <span class="badge-live" aria-label="Live system status">● Live</span>
+          <span style="font-size:13px;background:#162f3a;border:1px solid #224657;border-radius:999px;padding:4px 10px;color:#7fdcc4;font-weight:600;">RAG • Streaming • Context‑bound</span>
+        </div>
+      </div>
     </header>
-    <p class="sub">Pick a scenario to load a preset FAQ, then open the chat panel. The assistant answers strictly from the provided context and streams replies in real time.</p>
+  <p class="sub">Select a scenario below to inject domain‑specific FAQs and policies. Responses are generated with retrieval‑augmented grounding and will refuse to answer outside the supplied context.</p>
 
-    <div class="bar" aria-label="Choose a scenario">
-      <button class="chip" data-preset="coffee">☕ Coffee Shop</button>
-      <button class="chip" data-preset="dental">🦷 Dental Clinic</button>
-      <button class="chip" data-preset="ecom">🛒 E‑commerce</button>
-      <a class="btn" href="https://chat.vetracore.ca" target="_blank" rel="noopener">Open full screen</a>
-    </div>
+  <ul class="preset-grid" aria-label="Choose a scenario">
+      <li class="preset-card">
+        <button data-preset="coffee" aria-label="Load Coffee Shop preset">
+          <div class="preset-icon">☕</div>
+          <div class="preset-name">Coffee Shop</div>
+          <div class="preset-desc">Menu items, loyalty program, seasonal drinks & pickup times.</div>
+          <div class="preset-chipline"><span class="preset-tag">Retail</span><span class="preset-tag">CS</span></div>
+        </button>
+      </li>
+      <li class="preset-card">
+        <button data-preset="dental" aria-label="Load Dental Clinic preset">
+          <div class="preset-icon">🦷</div>
+          <div class="preset-name">Dental Clinic</div>
+          <div class="preset-desc">Insurance, new patients, emergency care & appointment prep.</div>
+          <div class="preset-chipline"><span class="preset-tag">Healthcare</span><span class="preset-tag">FAQ</span></div>
+        </button>
+      </li>
+      <li class="preset-card">
+        <button data-preset="ecom" aria-label="Load E‑commerce preset">
+          <div class="preset-icon">🛒</div>
+          <div class="preset-name">E‑commerce</div>
+          <div class="preset-desc">Shipping, returns, order tracking & discount policy coverage.</div>
+          <div class="preset-chipline"><span class="preset-tag">Online</span><span class="preset-tag">Support</span></div>
+        </button>
+      </li>
+    </ul>
 
-    <p class="note">Tip: If your browser blocks embeds, “Open full screen.” You can also deep‑link: <code>#chat-coffee</code>, <code>#chat-dental</code>, <code>#chat-ecom</code>.</p>
+  <!-- Removed deep‑link helper text per request -->
   </div>
 
   <footer>&copy; 2025 VetraCore</footer>
@@ -108,7 +142,6 @@
       </div>
       <div class="vc-tools">
         <button id="vcResetBtn" class="vc-icon" title="Reset chat">Reset</button>
-        <button id="vcOpenFullBtn" class="vc-icon" title="Open full screen">Full</button>
         <button id="vcCloseBtn" class="vc-icon" title="Close">Close</button>
       </div>
     </div>
@@ -127,7 +160,6 @@
       const backdrop  = document.getElementById('vcBackdrop');
       const openBtn   = document.getElementById('vcOpenBtn');
       const closeBtn  = document.getElementById('vcCloseBtn');
-      const openFull  = document.getElementById('vcOpenFullBtn');
       const resetBtn  = document.getElementById('vcResetBtn');
       const frame     = panel.querySelector('iframe');
       const pill      = document.getElementById('vcPresetPill');
@@ -165,7 +197,6 @@
         localStorage.setItem("vc:lastPreset", preset || "");
         frame.src = srcFor(preset);
         setPill(preset);
-        openFull.onclick = () => window.open(`${BASE}?preset=${encodeURIComponent(preset||"")}`, "_blank", "noopener");
         setOpen(true);
       }
 
