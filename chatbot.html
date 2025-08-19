@@ -60,9 +60,9 @@
     <p class="sub">Pick a scenario to load a preset FAQ, then open the chat widget. The assistant answers strictly from the provided context and streams replies in real time.</p>
 
     <div class="bar" aria-label="Choose a scenario">
-      <button class="chip" onclick="openWith('coffee')">☕ Coffee Shop</button>
-      <button class="chip" onclick="openWith('dental')">🦷 Dental Clinic</button>
-      <button class="chip" onclick="openWith('ecom')">🛒 E‑commerce</button>
+      <button class="chip" data-preset="coffee">☕ Coffee Shop</button>
+      <button class="chip" data-preset="dental">🦷 Dental Clinic</button>
+      <button class="chip" data-preset="ecom">🛒 E‑commerce</button>
       <a class="btn" href="https://chat.vetracore.ca" target="_blank" rel="noopener">Open full screen</a>
     </div>
 
@@ -78,7 +78,7 @@
 
   <div id="vcPanel" class="vc-chat-panel" hidden aria-label="Chatbot panel" role="dialog" aria-modal="true">
     <div class="vc-chat-panel__header">
-      <div class="vc-chat-panel__title">🤖 VetraCore Chatbot</div>
+      <div class="vc-chat-panel__title" id="vcTitle">🤖 VetraCore Chatbot</div>
       <button id="vcCloseBtn" class="vc-chat-panel__close" aria-label="Close">×</button>
     </div>
     <iframe class="vc-chat-frame" src="about:blank" title="VetraCore Chatbot (Embedded)" loading="lazy" allow="clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -90,26 +90,52 @@
       const openBtn = document.getElementById('vcOpenBtn');
       const closeBtn= document.getElementById('vcCloseBtn');
       const frame   = panel.querySelector('iframe');
+      const titleEl = document.getElementById('vcTitle');
+      const chips   = Array.from(document.querySelectorAll('[data-preset]'));
+      const BASE    = "https://chat.vetracore.ca";
 
       function openPanel(){ panel.hidden = false; openBtn.setAttribute('aria-expanded','true'); }
       function closePanel(){ panel.hidden = true;  openBtn.setAttribute('aria-expanded','false'); }
 
+      function setTitle(preset){
+        const pretty = preset === "coffee" ? "Coffee Shop"
+                      : preset === "dental" ? "Dental Clinic"
+                      : preset === "ecom"   ? "E‑commerce"
+                      : "Chatbot";
+        titleEl.textContent = `🤖 VetraCore · ${pretty}`;
+      }
+
       function openWith(preset){
-        const url = new URL("https://chat.vetracore.ca", location.origin);
+        // Add a tiny cache-buster so Streamlit allocates a fresh session,
+        // but server-side we ALSO clear when preset changes (belt+suspenders).
+        const v = Date.now().toString(36);
+        const url = new URL(BASE);
         url.searchParams.set("embed", "1");
         if (preset) url.searchParams.set("preset", preset);
+        url.searchParams.set("_v", v);
         frame.src = url.toString();
+        setTitle(preset);
+        localStorage.setItem("vc:lastPreset", preset || "");
         openPanel();
       }
 
-      openBtn.addEventListener('click', () => openWith(''));  // default (no preset)
+      // Button clicks
+      chips.forEach(btn => btn.addEventListener('click', () => openWith(btn.dataset.preset)));
+      openBtn.addEventListener('click', () => {
+        // Reopen with last preset (or none)
+        const last = localStorage.getItem("vc:lastPreset") || "";
+        openWith(last);
+      });
       closeBtn.addEventListener('click', closePanel);
       document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePanel(); });
 
       // Deep link support: #chat-coffee / #chat-dental / #chat-ecom
-      if (location.hash.startsWith('#chat-')) {
-        openWith(location.hash.replace('#chat-',''));
+      function maybeFromHash(){
+        const m = (location.hash || "").toLowerCase().match(/^#chat-(coffee|dental|ecom)$/);
+        if (m) openWith(m[1]);
       }
+      window.addEventListener('hashchange', maybeFromHash);
+      maybeFromHash();
     })();
   </script>
 </body>
