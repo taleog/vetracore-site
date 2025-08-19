@@ -29,6 +29,34 @@
     .note { margin-top:12px; opacity:.8; font-size:14px; }
     footer { margin:56px 0 32px; text-align:center; font-size:13px; opacity:.55; }
     @media (max-width:640px){ .wrap { padding:12px; margin:24px auto 40px; } }
+
+    /* --- VetraCore floating chat widget (embed mode) --- */
+    .vc-chat-launcher {
+      position: fixed; right: 20px; bottom: 20px; z-index: 1000;
+    }
+    .vc-chat-launcher button {
+      display:inline-flex; align-items:center; gap:8px;
+      background: var(--accent); color:#052b24; border:0; border-radius:999px;
+      padding:12px 16px; font-weight:700; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.35);
+    }
+    .vc-chat-panel {
+      position: fixed; right: 20px; bottom: 82px; width: 420px; height: 600px;
+      background:#0e1c26; border:1px solid #1f3848; border-radius:16px; overflow:hidden;
+      box-shadow:0 18px 48px rgba(0,0,0,.55); z-index: 1000;
+    }
+    .vc-chat-panel__header {
+      height:48px; display:flex; align-items:center; justify-content:space-between;
+      padding:0 12px; border-bottom:1px solid #1f3848; background:#13232f;
+    }
+    .vc-chat-panel__title { font-weight:700; font-size:14px; display:flex; align-items:center; gap:8px; }
+    .vc-chat-panel__close {
+      background:transparent; color:var(--text); border:0; font-size:20px; cursor:pointer; line-height:1;
+    }
+    .vc-chat-frame { width:100%; height:calc(100% - 48px); border:0; background:#0e1c26; }
+    @media (max-width: 520px) {
+      .vc-chat-panel { right:0; bottom:0; width:100%; height:100%; border-radius:0; }
+      .vc-chat-launcher { right: 12px; bottom: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -49,15 +77,41 @@
       <button class="chip" onclick="scrollToFrame()">What are your prices?</button>
     </div>
 
-    <div id="frame" class="frame-wrap" aria-label="Embedded chatbot">
-      <iframe src="https://chat.vetracore.ca" title="VetraCore Chatbot" loading="lazy" allow="clipboard-write;" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-    </div>
-
-    <p class="note">Tip: If the embed is blocked by a browser extension or corporate policy, use “Open full screen.”</p>
+    <p class="note">Tip: Click the chat bubble to open a compact widget. If your browser blocks embeds, use “Open full screen.”</p>
   </div>
   <footer>&copy; 2025 VetraCore</footer>
   <script>
     function scrollToFrame(){ document.getElementById('frame').scrollIntoView({behavior:'smooth'}); }
+  </script>
+
+  <!-- Floating Chat Widget (iframe to embed mode) -->
+  <div class="vc-chat-launcher" aria-label="Open chatbot">
+    <button id="vcOpenBtn">💬 Try Chatbot</button>
+  </div>
+
+  <div id="vcPanel" class="vc-chat-panel" hidden aria-label="Chatbot panel" role="dialog" aria-modal="true">
+    <div class="vc-chat-panel__header">
+      <div class="vc-chat-panel__title">🤖 VetraCore Chatbot</div>
+      <button id="vcCloseBtn" class="vc-chat-panel__close" aria-label="Close">×</button>
+    </div>
+    <iframe class="vc-chat-frame" src="https://chat.vetracore.ca?embed=1" title="VetraCore Chatbot (Embedded)" loading="lazy" allow="clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+
+  <script>
+    (function(){
+      const panel = document.getElementById('vcPanel');
+      const openBtn = document.getElementById('vcOpenBtn');
+      const closeBtn = document.getElementById('vcCloseBtn');
+
+      function openPanel(){ panel.hidden = false; openBtn.setAttribute('aria-expanded','true'); }
+      function closePanel(){ panel.hidden = true;  openBtn.setAttribute('aria-expanded','false'); }
+
+      openBtn.addEventListener('click', openPanel);
+      closeBtn.addEventListener('click', closePanel);
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePanel(); });
+      // Auto-open if URL hash is #chat
+      if (location.hash === '#chat') openPanel();
+    })();
   </script>
 </body>
 </html>
