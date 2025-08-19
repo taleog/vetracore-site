@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" href="vetracore-icon.png" />
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/faq-chatbot.css">
 </head>
 <body>
   <nav class="nav">
@@ -35,42 +34,22 @@
           <div class="demo-panel chatbot-panel" style="background: #222a35; color: #fff; border-radius: 22px; box-shadow: 0 8px 36px rgba(0,226,195,0.13); padding: 44px 32px; text-align: center; flex: 1 1 340px; min-width: 300px; position: relative;">
             <div style="margin-bottom: 16px;"><img src="https://img.icons8.com/fluency/48/000000/chatbot.png" alt="Chatbot Icon" style="width:48px; height:48px;"></div>
             <h2 style="color: #00e2c3; font-size: 1.5rem; margin-bottom: 20px; font-weight: 700;">Chatbot Demo</h2>
-            <button class="btn demo-btn" id="demoChatbotBtn" style="margin-bottom: 18px; font-size: 1.1rem; padding: 12px 32px; border-radius: 16px; background: linear-gradient(90deg,#00e2c3 0%,#00b6e2 100%); color: #181f2a; font-weight: 700; box-shadow: 0 2px 12px rgba(0,226,195,0.18); border: none; cursor: pointer; transition: box-shadow 0.2s, background 0.2s, border-radius 0.2s; min-width: 170px;">Try Chatbot</button>
+            <a href="chatbot.html" class="btn demo-btn" style="margin-bottom: 18px; font-size: 1.1rem; padding: 12px 32px; border-radius: 16px; background: linear-gradient(90deg,#00e2c3 0%,#00b6e2 100%); color: #181f2a; font-weight: 700; box-shadow: 0 2px 12px rgba(0,226,195,0.18); border: none; cursor: pointer; display:inline-block; text-decoration:none; min-width: 170px;">Try Chatbot</a>
             <div class="demo-chatbot-placeholder" id="demoChatbotPlaceholder">
-              <p class="demo-placeholder-text" style="color: #b3b9c9; font-size: 1.05rem; margin-top: 10px;">Chat with our AI bot and see how it handles real business FAQs.</p>
+              <p class="demo-placeholder-text" style="color: #b3b9c9; font-size: 1.05rem; margin-top: 10px;">Opens the live AI FAQ Chatbot with file upload & retrieval.</p>
             </div>
           </div>
           <div class="demo-panel voice-panel" style="background: #222a35; color: #fff; border-radius: 22px; box-shadow: 0 8px 36px rgba(0,226,195,0.13); padding: 44px 32px; text-align: center; flex: 1 1 340px; min-width: 300px; position: relative;">
             <div style="margin-bottom: 16px;"><img src="https://img.icons8.com/fluency/48/000000/phone.png" alt="Voice Icon" style="width:48px; height:48px;"></div>
             <h2 style="color: #00e2c3; font-size: 1.5rem; margin-bottom: 20px; font-weight: 700;">Voice Agent Demo</h2>
-            <a href="tel:+17754297429" class="btn demo-btn" id="demoVoiceBtn" style="margin-bottom: 18px; font-size: 1.1rem; padding: 12px 32px; border-radius: 16px; background: linear-gradient(90deg,#00e2c3 0%,#00b6e2 100%); color: #181f2a; font-weight: 700; box-shadow: 0 2px 12px rgba(0,226,195,0.18); border: none; cursor: pointer; display: inline-block; transition: box-shadow 0.2s, background 0.2s, border-radius 0.2s; min-width: 170px; text-decoration: none;">Try Voice Agent</a>
+            <a href="voice.html" class="btn demo-btn" style="margin-bottom: 18px; font-size: 1.1rem; padding: 12px 32px; border-radius: 16px; background: linear-gradient(90deg,#00e2c3 0%,#00b6e2 100%); color: #181f2a; font-weight: 700; box-shadow: 0 2px 12px rgba(0,226,195,0.18); border: none; cursor: pointer; display: inline-block; transition: box-shadow 0.2s, background 0.2s, border-radius 0.2s; min-width: 170px; text-decoration: none;">Try Voice Agent</a>
             <div class="voice-demo-placeholder" style="margin-top: 10px;">
-              <p class="demo-placeholder-text" style="color: #b3b9c9; font-size: 1.05rem;">Call our AI voice agent at <span style="display:inline-block; background:rgba(0,226,195,0.08); padding:4px 12px; border-radius:6px; font-size:1.18rem; color:#00e2c3; font-weight:600; letter-spacing:1px; margin-left:4px;">+1 (775) 429-7429</span></p>
+              <p class="demo-placeholder-text" style="color: #b3b9c9; font-size: 1.05rem;">Call our AI voice agent or see example prompts.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- FAQ Chatbot Widget HTML -->
-    <div class="faq-chatbot-widget" id="faq-chatbot-widget">
-      <button class="faq-chatbot-toggle" id="faq-chatbot-toggle" aria-label="Open FAQ Chatbot" tabindex="0">💬</button>
-      <div class="faq-chatbot-window" id="faq-chatbot-window" hidden>
-        <div class="faq-chatbot-header">
-          VetraCore FAQ Chatbot
-          <button class="faq-chatbot-close" id="faq-chatbot-close" aria-label="Close Chatbot">×</button>
-        </div>
-        <div class="faq-chatbot-messages" id="faq-chatbot-messages"></div>
-        <div class="faq-chatbot-suggestions" id="faq-chatbot-suggestions" style="display: flex; flex-direction: column; gap: 8px; margin: 16px 12px 0 0; align-items: flex-end;">
-          <button type="button" class="faq-chatbot-suggestion" style="background: #e3e8ef; color: #222a35; border: none; border-radius: 16px; padding: 7px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin: 0; box-shadow: 0 2px 12px rgba(0,226,195,0.10); max-width: 80%; text-align: left;">What services do you offer?</button>
-          <button type="button" class="faq-chatbot-suggestion" style="background: #e3e8ef; color: #222a35; border: none; border-radius: 16px; padding: 7px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin: 0; box-shadow: 0 2px 12px rgba(0,226,195,0.10); max-width: 80%; text-align: left;">How do I get started?</button>
-          <button type="button" class="faq-chatbot-suggestion" style="background: #e3e8ef; color: #222a35; border: none; border-radius: 16px; padding: 7px 18px; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin: 0; box-shadow: 0 2px 12px rgba(0,226,195,0.10); max-width: 80%; text-align: left;">What are your pricing options?</button>
-        </div>
-        <form class="faq-chatbot-form" id="faq-chatbot-form" autocomplete="off">
-          <input class="faq-chatbot-input" id="faq-chatbot-input" type="text" placeholder="Type your question..." autocomplete="off" />
-          <button class="faq-chatbot-send" type="submit" aria-label="Send">➤</button>
-        </form>
-      </div>
-    </div>
   </main>
   <footer>
     <div class="container footer-content" style="border-top: 1px solid #222a35; margin-top: 48px; padding-top: 24px; text-align: center;">
@@ -79,65 +58,6 @@
       <p class="copyright" style="color: #b3b9c9; font-size: 0.98rem;">© 2025 VetraCore. All rights reserved.</p>
     </div>
   </footer>
-  <!-- FAQ Chatbot JS -->
-  <script src="js/faq-chatbot.js"></script>
-  <script>
-    // Make Try Chatbot button open the FAQ chatbot popup and focus input
-    document.addEventListener('DOMContentLoaded', function() {
-      var btn = document.getElementById('demoChatbotBtn');
-      var toggle = document.getElementById('faq-chatbot-toggle');
-      btn.addEventListener('click', function() {
-        if (toggle) toggle.click();
-        setTimeout(function() {
-          var input = document.getElementById('faq-chatbot-input');
-          if (input) input.focus();
-        }, 350);
-      });
-
-      // Suggestion bubbles click handler
-      var suggestions = document.querySelectorAll('.faq-chatbot-suggestion');
-      var input = document.getElementById('faq-chatbot-input');
-      var suggestionsContainer = document.getElementById('faq-chatbot-suggestions');
-      suggestions.forEach(function(suggestion) {
-        suggestion.addEventListener('click', function() {
-          if (input) {
-            input.value = suggestion.textContent;
-            input.focus();
-          }
-        });
-      });
-
-      // Hide suggestions when a chat is sent
-      var form = document.getElementById('faq-chatbot-form');
-      if (form && suggestionsContainer) {
-        form.addEventListener('submit', function() {
-          suggestionsContainer.style.display = 'none';
-        });
-      }
-
-      // Show suggestions again when chat is reopened
-      var closeBtn = document.getElementById('faq-chatbot-close');
-      var toggleBtn = document.getElementById('faq-chatbot-toggle');
-      function showSuggestions() {
-        if (suggestionsContainer) suggestionsContainer.style.display = 'flex';
-      }
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', showSuggestions);
-      }
-    });
-
-    // Ensure chatbot input is visible above mobile keyboard
-    (function() {
-      var input = document.getElementById('faq-chatbot-input');
-      var windowEl = document.getElementById('faq-chatbot-window');
-      if (input && windowEl) {
-        input.addEventListener('focus', function() {
-          setTimeout(function() {
-            input.scrollIntoView({ behavior: 'smooth', block: 'end' });
-          }, 250);
-        });
-      }
-    })();
-  </script>
+  <!-- No inline chatbot widget anymore; links route to dedicated pages. -->
 </body>
 </html>
