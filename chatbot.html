@@ -117,7 +117,7 @@
 
   <!-- Launcher -->
   <div class="vc-launcher" aria-label="Open chatbot">
-    <button id="vcOpenBtn">💬 Open Chat</button>
+    <button id="vcOpenBtn" aria-haspopup="dialog" aria-controls="vcPanel" aria-expanded="false">💬 Open Chat</button>
   </div>
 
   <script>
@@ -145,6 +145,11 @@
         panel.hidden = !open; backdrop.hidden = !open;
         panel.classList.toggle('is-open', open);
         backdrop.classList.toggle('is-open', open);
+        // Hide launcher button while panel is open (and restore when closed)
+        if (openBtn) {
+          openBtn.style.display = open ? 'none' : '';
+          openBtn.setAttribute('aria-expanded', String(open));
+        }
       }
 
       function srcFor(preset){
