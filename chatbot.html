@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VetraCore Chatbot Demo</title>
-  <meta name="description" content="Live FAQ AI Chatbot demo with document upload, semantic retrieval and streaming answers." />
+  <meta name="description" content="Live FAQ AI Chatbot demo with user story presets." />
   <link rel="icon" type="image/png" href="vetracore-icon.png" />
   <style>
     :root { --bg:#0b1720; --card:#142532; --text:#e9f1f5; --accent:#26e0b3; }
@@ -20,20 +20,13 @@
     nav.breadcrumb a { text-decoration:none; }
     .bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:12px 0 18px; }
     .btn { background:var(--accent); color:#052b24; border:none; border-radius:999px; padding:10px 16px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px; font-size:14px; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,.4); }
-    .btn:focus-visible, .chip:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
     .chip { background:var(--card); border:1px solid #1f3848; color:var(--text); border-radius:999px; padding:8px 12px; cursor:pointer; font-size:14px; line-height:1; }
     .chip:hover { background:#1c3240; }
-    .frame-wrap { position:relative; border-radius:14px; overflow:hidden; border:1px solid #1f3848; background:#0e1c26; box-shadow:0 4px 18px -4px rgba(0,0,0,.55); }
-    .frame-wrap::before { content:""; display:block; padding-top:62.5%; } /* 16:10 ratio */
-    iframe { position:absolute; inset:0; width:100%; height:100%; border:0; background:#0e1c26; }
     .note { margin-top:12px; opacity:.8; font-size:14px; }
     footer { margin:56px 0 32px; text-align:center; font-size:13px; opacity:.55; }
-    @media (max-width:640px){ .wrap { padding:12px; margin:24px auto 40px; } }
 
-    /* --- VetraCore floating chat widget (embed mode) --- */
-    .vc-chat-launcher {
-      position: fixed; right: 20px; bottom: 20px; z-index: 1000;
-    }
+    /* Floating chat widget */
+    .vc-chat-launcher { position: fixed; right: 20px; bottom: 20px; z-index: 1000; }
     .vc-chat-launcher button {
       display:inline-flex; align-items:center; gap:8px;
       background: var(--accent); color:#052b24; border:0; border-radius:999px;
@@ -49,9 +42,7 @@
       padding:0 12px; border-bottom:1px solid #1f3848; background:#13232f;
     }
     .vc-chat-panel__title { font-weight:700; font-size:14px; display:flex; align-items:center; gap:8px; }
-    .vc-chat-panel__close {
-      background:transparent; color:var(--text); border:0; font-size:20px; cursor:pointer; line-height:1;
-    }
+    .vc-chat-panel__close { background:transparent; color:var(--text); border:0; font-size:20px; cursor:pointer; line-height:1; }
     .vc-chat-frame { width:100%; height:calc(100% - 48px); border:0; background:#0e1c26; }
     @media (max-width: 520px) {
       .vc-chat-panel { right:0; bottom:0; width:100%; height:100%; border-radius:0; }
@@ -66,25 +57,21 @@
       <h1>Chatbot Demo</h1>
       <span class="badge-live" aria-label="Live system status">● Live</span>
     </header>
-    <p class="sub">Upload a CSV / TSV / XLSX FAQ file, then ask questions. The assistant retrieves relevant rows using semantic search (with OpenAI embeddings or TF‑IDF fallback) and streams concise grounded answers with short‑term memory.</p>
+    <p class="sub">Pick a scenario to load a preset FAQ, then open the chat widget. The assistant answers strictly from the provided context and streams replies in real time.</p>
 
-    <div class="bar" aria-label="Sample prompts and actions">
-      <a class="btn" href="https://chat.vetracore.ca" target="_blank" rel="noopener" aria-label="Open chatbot in a new tab">Open full screen</a>
-      <span style="opacity:.65;font-size:13px;">or try:</span>
-      <button class="chip" onclick="scrollToFrame()">What are your business hours?</button>
-      <button class="chip" onclick="scrollToFrame()">Where are you located?</button>
-      <button class="chip" onclick="scrollToFrame()">Do you offer returns?</button>
-      <button class="chip" onclick="scrollToFrame()">What are your prices?</button>
+    <div class="bar" aria-label="Choose a scenario">
+      <button class="chip" onclick="openWith('coffee')">☕ Coffee Shop</button>
+      <button class="chip" onclick="openWith('dental')">🦷 Dental Clinic</button>
+      <button class="chip" onclick="openWith('ecom')">🛒 E‑commerce</button>
+      <a class="btn" href="https://chat.vetracore.ca" target="_blank" rel="noopener">Open full screen</a>
     </div>
 
-    <p class="note">Tip: Click the chat bubble to open a compact widget. If your browser blocks embeds, use “Open full screen.”</p>
+    <p class="note">Tip: If your browser blocks embeds, “Open full screen.” You can also deep‑link: <code>#chat-coffee</code>, <code>#chat-dental</code>, <code>#chat-ecom</code>.</p>
   </div>
-  <footer>&copy; 2025 VetraCore</footer>
-  <script>
-    function scrollToFrame(){ document.getElementById('frame').scrollIntoView({behavior:'smooth'}); }
-  </script>
 
-  <!-- Floating Chat Widget (iframe to embed mode) -->
+  <footer>&copy; 2025 VetraCore</footer>
+
+  <!-- Floating Chat Widget (iframe) -->
   <div class="vc-chat-launcher" aria-label="Open chatbot">
     <button id="vcOpenBtn">💬 Try Chatbot</button>
   </div>
@@ -94,23 +81,35 @@
       <div class="vc-chat-panel__title">🤖 VetraCore Chatbot</div>
       <button id="vcCloseBtn" class="vc-chat-panel__close" aria-label="Close">×</button>
     </div>
-    <iframe class="vc-chat-frame" src="https://chat.vetracore.ca?embed=1" title="VetraCore Chatbot (Embedded)" loading="lazy" allow="clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe class="vc-chat-frame" src="about:blank" title="VetraCore Chatbot (Embedded)" loading="lazy" allow="clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
 
   <script>
     (function(){
-      const panel = document.getElementById('vcPanel');
+      const panel   = document.getElementById('vcPanel');
       const openBtn = document.getElementById('vcOpenBtn');
-      const closeBtn = document.getElementById('vcCloseBtn');
+      const closeBtn= document.getElementById('vcCloseBtn');
+      const frame   = panel.querySelector('iframe');
 
       function openPanel(){ panel.hidden = false; openBtn.setAttribute('aria-expanded','true'); }
       function closePanel(){ panel.hidden = true;  openBtn.setAttribute('aria-expanded','false'); }
 
-      openBtn.addEventListener('click', openPanel);
+      function openWith(preset){
+        const url = new URL("https://chat.vetracore.ca", location.origin);
+        url.searchParams.set("embed", "1");
+        if (preset) url.searchParams.set("preset", preset);
+        frame.src = url.toString();
+        openPanel();
+      }
+
+      openBtn.addEventListener('click', () => openWith(''));  // default (no preset)
       closeBtn.addEventListener('click', closePanel);
       document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePanel(); });
-      // Auto-open if URL hash is #chat
-      if (location.hash === '#chat') openPanel();
+
+      // Deep link support: #chat-coffee / #chat-dental / #chat-ecom
+      if (location.hash.startsWith('#chat-')) {
+        openWith(location.hash.replace('#chat-',''));
+      }
     })();
   </script>
 </body>
