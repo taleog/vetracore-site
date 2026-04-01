@@ -1113,3 +1113,15 @@
     --icon-distance: 110px;
   }
 }
+
+@media (max-width: 768px) {
+  .chatbot-demo iframe {
+    height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatbot-demo iframe {
+    height: 400px;
+  }
+}
