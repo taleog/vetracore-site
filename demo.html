@@ -3,12 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VetraCore - Demos Temporarily Unavailable</title>
-  <meta name="description" content="VetraCore demos are temporarily unavailable while we update the experience.">
-  <meta name="robots" content="noindex, nofollow">
+  <title>VetraCore - Demo Center</title>
+  <meta name="description" content="Try VetraCore AI agents: FAQ chatbot and voice agent demos.">
+  <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="vetracore-icon.png" />
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .demo-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:32px; margin:60px 0; }
+    .demo-card { background:#222a35; border-radius:22px; padding:40px 36px; box-shadow:0 8px 36px rgba(0,226,195,0.08); text-align:center; transition: transform .25s, box-shadow .25s; }
+    .demo-card:hover { transform:translateY(-6px); box-shadow:0 12px 42px rgba(0,226,195,0.15); }
+    .demo-card-icon { font-size:56px; margin-bottom:16px; }
+    .demo-card h2 { color:#00e2c3; font-size:1.6rem; margin:0 0 12px; }
+    .demo-card p { color:#c8cedb; font-size:1rem; line-height:1.6; margin-bottom:24px; }
+    .section-intro { max-width:680px; margin:0 auto; text-align:center; }
+    .demo-title { font-size:2.6rem; font-weight:800; color:#00e2c3; margin-bottom:16px; }
+  </style>
 </head>
 <body>
   <nav class="nav">
@@ -19,20 +29,31 @@
         <li><a href="index.html#benefits" class="nav-link">Benefits</a></li>
         <li><a href="index.html#testimonials" class="nav-link">Use Cases</a></li>
         <li><a href="index.html#implementation" class="nav-link">Implementation</a></li>
+        <li><a href="demo.html" class="nav-link">Demos</a></li>
         <li><a href="index.html#contact" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </nav>
   <main style="min-height: calc(100vh - 180px); display: flex; flex-direction: column;">
     <section class="demo-landing" style="background: radial-gradient(circle at 70% 70%, #00a88477 0%, #181f2a 60%, #181f2a 100%); min-height: 100vh; display: flex; align-items: center;">
-      <div class="container" style="max-width: 720px; margin: 0 auto;">
-        <div class="demo-panel" style="background: #222a35; color: #fff; border-radius: 22px; box-shadow: 0 8px 36px rgba(0,226,195,0.13); padding: 56px 40px; text-align: center;">
-          <p style="color: #00e2c3; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 18px;">Temporary Update</p>
-          <h1 class="demo-title" style="font-size: 2.6rem; font-weight: 800; color: #00e2c3; letter-spacing: 1px; margin-bottom: 16px;">Demos Are Temporarily Unavailable</h1>
-          <p class="demo-desc" style="color: #e3e8ef; font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px;">We have taken the live demo area offline while we update the experience. If you want to see what VetraCore can do, contact us and we can walk you through the current product directly.</p>
-          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-            <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
-            <a href="index.html" class="btn btn-outline">Back to Home</a>
+      <div class="container" style="max-width: 960px; margin: 0 auto;">
+        <div class="section-intro">
+          <p style="color: #00e2c3; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 18px;">Try It Yourself</p>
+          <h1 class="demo-title">Demo Center</h1>
+          <p style="color: #e3e8ef; font-size: 1.1rem; line-height: 1.7; margin-bottom: 0px;">Try our AI agents live. Select a demo below to see how VetraCore can handle real customer conversations.</p>
+        </div>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <div class="demo-card-icon">💬</div>
+            <h2>FAQ Chatbot</h2>
+            <p>Try our retrieval-augmented chatbot with preset scenarios: coffee shop, dental clinic, or e-commerce. Ask any question and see real-time AI responses grounded in business data.</p>
+            <a href="chatbot.html" class="btn btn-primary" style="display:inline-block;">Try the Chatbot →</a>
+          </div>
+          <div class="demo-card">
+            <div class="demo-card-icon">📞</div>
+            <h2>Voice Agent</h2>
+            <p>Call our AI receptionist and hear how natural AI voice conversations can handle inquiries, collect intent, and provide information — just like a human team member.</p>
+            <a href="voice.html" class="btn btn-primary" style="display:inline-block;">Try the Voice Agent →</a>
           </div>
         </div>
       </div>
@@ -42,7 +63,7 @@
     <div class="container footer-content" style="border-top: 1px solid #222a35; margin-top: 48px; padding-top: 24px; text-align: center;">
       <div class="footer-logo" style="color: #00e2c3; font-size: 2rem; font-weight: 700; margin-bottom: 8px;">VetraCore</div>
       <p class="footer-tagline" style="color: #b3b9c9; font-size: 1.08rem; margin-bottom: 4px;">Smarter agents. Simpler automation.</p>
-      <p class="copyright" style="color: #b3b9c9; font-size: 0.98rem;">© 2025 VetraCore. All rights reserved.</p>
+      <p class="copyright" style="color: #b3b9c9; font-size: 0.98rem;">&copy; 2025 VetraCore. All rights reserved.</p>
     </div>
   </footer>
 </body>
