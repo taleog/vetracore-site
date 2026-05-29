@@ -8,12 +8,11 @@
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="vetracore-icon.png" />
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/responsive.css">
   <style>
     .demo-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:32px; margin:60px 0; }
     .demo-card { background:#222a35; border-radius:22px; padding:40px 36px; box-shadow:0 8px 36px rgba(0,226,195,0.08); text-align:center; transition: transform .25s, box-shadow .25s; }
     .demo-card:hover { transform:translateY(-6px); box-shadow:0 12px 42px rgba(0,226,195,0.15); }
-    .demo-card-icon { font-size:56px; margin-bottom:16px; }
+    .demo-card-icon { display:inline-flex; align-items:center; justify-content:center; min-width:76px; height:42px; padding:0 16px; border-radius:999px; margin-bottom:22px; background:rgba(0,226,195,.1); border:1px solid rgba(0,226,195,.22); color:#cffff7; font-size:14px; font-weight:800; letter-spacing:.08em; }
     .demo-card h2 { color:#00e2c3; font-size:1.6rem; margin:0 0 12px; }
     .demo-card p { color:#c8cedb; font-size:1rem; line-height:1.6; margin-bottom:24px; }
     .section-intro { max-width:680px; margin:0 auto; text-align:center; }
@@ -44,13 +43,13 @@
         </div>
         <div class="demo-grid">
           <div class="demo-card">
-            <div class="demo-card-icon">💬</div>
+            <div class="demo-card-icon">CHAT</div>
             <h2>FAQ Chatbot</h2>
             <p>Try our retrieval-augmented chatbot with preset scenarios: coffee shop, dental clinic, or e-commerce. Ask any question and see real-time AI responses grounded in business data.</p>
             <a href="chatbot.html" class="btn btn-primary" style="display:inline-block;">Try the Chatbot →</a>
           </div>
           <div class="demo-card">
-            <div class="demo-card-icon">📞</div>
+            <div class="demo-card-icon">VOICE</div>
             <h2>Voice Agent</h2>
             <p>Call our AI receptionist and hear how natural AI voice conversations can handle inquiries, collect intent, and provide information — just like a human team member.</p>
             <a href="voice.html" class="btn btn-primary" style="display:inline-block;">Try the Voice Agent →</a>
