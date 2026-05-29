@@ -872,3 +872,79 @@ footer::before {
     max-width: 100%;
   }
 }
+
+/* Hero simplification after console removal */
+.hero {
+  min-height: 88vh;
+  padding: 150px 0 92px;
+  background:
+    linear-gradient(90deg, rgba(4, 7, 11, 0.95) 0%, rgba(4, 7, 11, 0.86) 36%, rgba(4, 7, 11, 0.52) 64%, rgba(4, 7, 11, 0.32) 100%),
+    linear-gradient(180deg, rgba(7, 10, 15, 0.08) 0%, rgba(7, 10, 15, 0.9) 100%),
+    url("../assets/hero-automation-bg.png") center right / cover no-repeat;
+}
+
+.hero::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 18%),
+    radial-gradient(circle at 24% 16%, rgba(55, 240, 207, 0.16), transparent 28rem);
+}
+
+.hero-grid {
+  display: block;
+}
+
+.hero-content {
+  max-width: 720px;
+}
+
+.hero h1 {
+  max-width: 720px;
+  font-size: clamp(3.4rem, 6.8vw, 6.35rem);
+  line-height: 0.93;
+}
+
+.hero-description {
+  max-width: 620px;
+  font-size: 1.15rem !important;
+}
+
+.hero-proof {
+  max-width: 560px;
+}
+
+.hero-proof span {
+  background: rgba(12, 18, 26, 0.62);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.hero-visual,
+.ops-console {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 118px 0 74px;
+    background:
+      linear-gradient(180deg, rgba(4, 7, 11, 0.78) 0%, rgba(4, 7, 11, 0.92) 42%, rgba(4, 7, 11, 0.98) 100%),
+      url("../assets/hero-automation-bg.png") 64% top / auto 58% no-repeat,
+      #070a0f;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 14vw, 4.45rem);
+    line-height: 0.96;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 112px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.62rem, 13vw, 3.75rem);
+  }
+}
